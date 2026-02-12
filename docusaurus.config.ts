@@ -70,11 +70,20 @@ const config: Config = {
           label: '1e 2D game',
         },
         {
-          to: '/docs/cheatsheet', // Pas het pad aan naar je cheatsheet-document
+          to: '/cheatsheet',
           label: 'Cheatsheet',
           position: 'left',
         },
-
+        {
+          to: '/gdscript-tips',
+          label: 'GDScript Tips',
+          position: 'left',
+        },
+        {
+          to: '/er-gaat-iets-mis',
+          label: 'Er gaat iets mis!',
+          position: 'left',
+        },
         {
           href: 'https://github.com/Coderius-Education/Godot',
           label: 'GitHub',
