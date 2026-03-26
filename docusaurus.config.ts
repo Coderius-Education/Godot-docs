@@ -5,7 +5,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const config: Config = {
-  title: 'coderius-godot',
+  title: 'Godot Leren — GDScript Game Development — Coderius',
   tagline: 'De eerste stappen in Godot',
   favicon: 'img/favicon.ico',
 
@@ -23,7 +23,7 @@ const config: Config = {
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: 'Coderius-Education', // Usually your GitHub org/user name.
-  projectName: 'GoDot', // Usually your repo name.
+  projectName: 'Godot-docs', // Usually your repo name.
 
   onBrokenLinks: 'throw',
 
@@ -31,9 +31,26 @@ const config: Config = {
   // useful metadata like html lang. For example, if your site is Chinese, you
   // may want to replace "en" with "zh-Hans".
   i18n: {
-    defaultLocale: 'en',
-    locales: ['en'],
+    defaultLocale: 'nl',
+    locales: ['nl'],
   },
+
+  headTags: [
+    {
+      tagName: 'meta',
+      attributes: {
+        name: 'description',
+        content: 'Leer professionele 2D games maken met de Godot engine. Begin direct in je browser — geen download nodig.',
+      },
+    },
+    {
+      tagName: 'meta',
+      attributes: {
+        name: 'keywords',
+        content: 'godot leren, gdscript tutorial, godot beginners, game maken godot, godot tutorial nederlands',
+      },
+    },
+  ],
 
   presets: [
     [
@@ -44,7 +61,7 @@ const config: Config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/Coderius-Educatio/Godot/tree/main',
+            'https://github.com/Coderius-Education/Godot-docs/tree/main/',
         },
       } satisfies Preset.Options,
     ],
@@ -94,6 +111,13 @@ const config: Config = {
     footer: {
       style: 'dark',
       links: [
+        {
+          title: 'Meer van Coderius',
+          items: [
+            { label: 'Begin met Python games', href: 'https://play.coderius.nl' },
+            { label: 'Leer eerst Python', href: 'https://python.coderius.nl' },
+          ],
+        },
       ],
       copyright: `Licensed under Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)`,
     },
