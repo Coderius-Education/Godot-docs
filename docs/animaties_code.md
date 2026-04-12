@@ -1,5 +1,5 @@
 ---
-sidebar_position: 11
+sidebar_position: 12
 ---
 
 # Animations in GDScript
@@ -196,5 +196,58 @@ func _physics_process(delta: float) -> void:
 		
 	move_and_slide()
 ```
+
+</details>
+
+---
+
+## Make-opdracht: landing-animatie
+
+Je hebt nu `idle`, `run` en `jump` werkend. Maak nu zelf een extra animatie.
+
+**Opdracht:** Voeg een `landing`-animatie toe die **één keer** afspeelt op het moment dat de speler landt (van in de lucht naar op de grond gaat).
+
+<details>
+<summary>Tip</summary>
+
+Je moet het verschil detecteren tussen de vorige frame en de huidige frame:
+- Vorige frame: de speler was **niet** op de grond
+- Huidige frame: de speler **is** op de grond
+
+Gebruik een extra variabele `was_op_de_grond` die je bijhoudt vóórdat je `op_de_grond` bijwerkt.
+
+Om een animatie één keer af te spelen (niet loopen), gebruik je `$AnimatedSprite2D.play("landing")` en zet je in SpriteFrames **Loop uit** voor die animatie.
+
+</details>
+
+<details>
+<summary>Antwoord</summary>
+
+Voeg de variabele toe bovenaan het script:
+```gdscript
+var was_op_de_grond = true
+```
+
+Vervang het animatie-gedeelte in `_physics_process` door:
+```gdscript
+was_op_de_grond = op_de_grond
+op_de_grond = is_on_floor()
+
+# Landing detecteren: vorige frame in lucht, nu op de grond
+if not was_op_de_grond and op_de_grond:
+    $AnimatedSprite2D.play('landing')
+elif not op_de_grond:
+    $AnimatedSprite2D.play('jump')
+elif staat_stil:
+    $AnimatedSprite2D.play('idle')
+elif velocity.x > 0:
+    $AnimatedSprite2D.play('run')
+    $AnimatedSprite2D.flip_h = false
+elif velocity.x < 0:
+    $AnimatedSprite2D.play('run')
+    $AnimatedSprite2D.flip_h = true
+```
+
+**Vergeet niet** om in SpriteFrames de `landing`-animatie aan te maken en **Loop uit te zetten**, anders speelt hij continu opnieuw af.
 
 </details>

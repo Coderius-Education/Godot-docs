@@ -1,13 +1,13 @@
-# Cheatsheet
+# Godot nodes — overzicht
 
-Een snelle referentie voor alles wat je nodig hebt in Godot en GDScript.
+Snelle naslag van alle node-types die in deze tutorial worden gebruikt.
 
 ---
 
 ## Coördinatensysteem
 
 <details>
-<summary>Hoe werkt het coördinatensysteem in Godot?</summary>
+<summary>Hoe werkt het coördinatensysteem?</summary>
 
 | Richting | As | Waarde |
 |---|---|---|
@@ -16,229 +16,163 @@ Een snelle referentie voor alles wat je nodig hebt in Godot en GDScript.
 | Omlaag | Y | Wordt groter (+) |
 | Omhoog | Y | Wordt kleiner (-) |
 
-> **Let op:** Het punt (0, 0) zit in de **linkerbovenhoek** van het scherm. Daarom is de jump velocity **negatief**!
+Het punt `(0, 0)` zit in de **linkerbovenhoek** van het scherm. Daarom is de jump velocity **negatief** — omhoog springen betekent Y kleiner maken.
 
 </details>
 
 ---
 
-## Script structuur
+## Level & wereld
 
 <details>
-<summary>Hoe ziet een GDScript bestand eruit?</summary>
+<summary>Node2D — basis van je level-scene</summary>
 
-```gdscript
-extends CharacterBody2D
+De basisnode voor alles in een 2D-wereld. Heeft een positie, rotatie en schaal.
 
-# 1. Constanten
-const SPEED = 300.0
-const JUMP_VELOCITY = -800.0
+**Wanneer gebruik je het?**
+Als root van je level/wereld-scene — de node waar alle andere nodes als child onder hangen.
 
-# 2. Variabelen
-var op_de_grond
-var staat_stil
+**Instellen in de Inspector:**
+- `Position` — waar de node staat in de wereld
+- `Rotation` — hoek in graden
+- `Scale` — grootte
 
-# 3. Functies
-func _physics_process(delta: float) -> void:
-    # Jouw code hier
-    move_and_slide()
+</details>
+
+<details>
+<summary>TileMapLayer — level bouwen met tegels</summary>
+
+Een node waarmee je de wereld opbouwt uit herhalende tegels (tiles), zoals platforms en de grond.
+
+**Wanneer gebruik je het?**
+Voor het bouwen van je level — sneller dan losse sprites voor elk platform.
+
+**Instellen:**
+1. Maak een `TileSet` aan via de Inspector → `Tile Set` → **New TileSet**
+2. Sleep een tileset-afbeelding erin
+3. Voeg een **Physics Layer** toe zodat de tiles botsen
+4. Teken je level met de TileMap-editor onderin
+
+</details>
+
+---
+
+## Hoofdpersoon
+
+<details>
+<summary>CharacterBody2D — je speler</summary>
+
+Een node voor een speelbaar karakter dat beweegt en botst met de wereld. Heeft ingebouwde ondersteuning voor `move_and_slide()`.
+
+**Vaste children:**
+```
+CharacterBody2D
+├── AnimatedSprite2D   ← zichtbaar uiterlijk
+└── CollisionShape2D   ← botsingsgebied
+```
+
+**Heeft een script nodig** om te bewegen (via `_physics_process`).
+
+</details>
+
+<details>
+<summary>AnimatedSprite2D — animaties voor je karakter</summary>
+
+Toont een afbeelding die kan wisselen tussen animaties, opgebouwd uit losse frames.
+
+**Wanneer gebruik je het?**
+Als child van `CharacterBody2D` voor animaties zoals idle, run en jump.
+
+**Instellen in de Inspector:**
+- `Sprite Frames` → **New SpriteFrames** → open de SpriteFrames-editor
+- Maak animaties aan (`idle`, `run`, `jump`) en sleep frames erin
+- Stel FPS in per animatie (aanbevolen: 8–12 FPS)
+
+</details>
+
+<details>
+<summary>CollisionShape2D — hitbox / botsingsgebied</summary>
+
+Definieert het botsingsgebied (hitbox) van een node. Godot gebruikt dit om te detecteren wanneer twee objecten elkaar raken.
+
+**Wanneer gebruik je het?**
+Als child van `CharacterBody2D` of `Area2D` — zonder dit kan Godot geen botsingen detecteren.
+
+**Instellen in de Inspector:**
+- `Shape` — kies een vorm:
+  - `CapsuleShape2D` — voor een karakter
+  - `RectangleShape2D` — voor rechthoekige objecten
+  - `CircleShape2D` — voor ronde objecten (bijv. muntje)
+
+</details>
+
+---
+
+## Collectibles & vijanden
+
+<details>
+<summary>Area2D — muntjes en vijanden detecteren</summary>
+
+Een node die detecteert wanneer andere objecten er doorheen bewegen — zonder zelf te botsen of te vallen.
+
+**Wanneer gebruik je het?**
+Voor muntjes, vijanden of checkpoints die een reactie moeten geven wanneer de speler ze aanraakt.
+
+**Vaste children:**
+```
+Area2D
+├── Sprite2D of AnimatedSprite2D
+└── CollisionShape2D
+```
+
+**Signal:** Koppel `body_entered` om te reageren wanneer een `CharacterBody2D` de area binnengaat.
+
+</details>
+
+<details>
+<summary>Sprite2D — stilstaande afbeelding</summary>
+
+Toont één stilstaande afbeelding in de scene.
+
+**Wanneer gebruik je het?**
+Voor objecten zonder animatie, zoals een muntje of een stilstaande vijand.
+
+**Instellen in de Inspector:**
+- `Texture` — sleep hier een afbeelding naartoe vanuit het FileSystem
+
+</details>
+
+---
+
+## UI
+
+<details>
+<summary>CanvasLayer — UI die altijd op het scherm blijft</summary>
+
+Een speciale node die zijn children **los van de camera** rendert — de inhoud blijft altijd op dezelfde plek op het scherm, ongeacht hoe de camera beweegt.
+
+**Wanneer gebruik je het?**
+Als container voor je score-display, levensbalken of andere UI-elementen.
+
+**Structuur:**
+```
+CanvasLayer
+└── Label   ← score, levens, etc.
 ```
 
 </details>
 
----
-
-## Variabelen & constanten
-
 <details>
-<summary>Hoe maak ik variabelen en constanten aan?</summary>
+<summary>Label — score of levens weergeven</summary>
 
-```gdscript
-var score            # Variabele zonder type
-var richting := 0.0  # Type wordt automatisch bepaald (:=)
-const SPEED = 300.0  # Constante (verandert nooit, HOOFDLETTERS)
-```
+Toont tekst op het scherm.
 
-</details>
+**Wanneer gebruik je het?**
+Voor het weergeven van de score, het aantal levens, of andere informatie aan de speler.
 
----
-
-## Input
-
-<details>
-<summary>Hoe lees ik toetsenbord-input?</summary>
-
-| Code | Wat doet het? |
-|---|---|
-| `Input.is_action_just_pressed("ui_accept")` | `true` op het moment dat je de toets indrukt (eenmalig) |
-| `Input.is_action_pressed("ui_accept")` | `true` zolang je de toets ingedrukt houdt |
-| `Input.get_axis("ui_left", "ui_right")` | Geeft `-1` (links), `0` (niks) of `1` (rechts) |
-
-</details>
-
----
-
-## Beweging
-
-<details>
-<summary>Volledig movement script</summary>
-
-```gdscript
-extends CharacterBody2D
-
-const SPEED = 300.0
-const JUMP_VELOCITY = -800.0
-
-func _physics_process(delta: float) -> void:
-    # Zwaartekracht toepassen
-    if not is_on_floor():
-        velocity += get_gravity() * delta
-
-    # Springen (alleen als je op de grond staat)
-    if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-        velocity.y = JUMP_VELOCITY
-
-    # Links/rechts bewegen
-    var direction := Input.get_axis("ui_left", "ui_right")
-    if direction:
-        velocity.x = direction * SPEED
-    else:
-        velocity.x = move_toward(velocity.x, 0, SPEED)
-
-    move_and_slide()
-```
-
-</details>
-
----
-
-## Velocity waarden
-
-<details>
-<summary>Welke velocity hoort bij welke situatie?</summary>
-
-| Situatie | velocity |
-|---|---|
-| Stilstaan | `(0, 0)` |
-| Naar rechts | `(300, 0)` |
-| Naar links | `(-300, 0)` |
-| Vallen | `(0, positief getal)` |
-| Springen | `(0, negatief getal)` |
-
-</details>
-
----
-
-## Handige functies
-
-<details>
-<summary>Welke functies gebruik ik het meest?</summary>
-
-| Functie | Uitleg |
-|---|---|
-| `move_and_slide()` | Past velocity toe en handelt botsingen af. **Altijd aan het einde aanroepen!** |
-| `is_on_floor()` | Geeft `true` als het karakter de grond raakt |
-| `get_gravity()` | Geeft de zwaartekracht-vector terug |
-| `move_toward(huidige, doel, stap)` | Beweegt een waarde richting het doel (handig voor afremmen) |
-| `print(waarde)` | Print een waarde naar de console (handig voor debuggen) |
-
-</details>
-
----
-
-## Animaties
-
-<details>
-<summary>Hoe speel ik animaties af?</summary>
-
-```gdscript
-# Animatie afspelen
-$Sprite2D.play('Idle')
-$Sprite2D.play('Run')
-$Sprite2D.play('Jump')
-
-# Sprite spiegelen (links/rechts kijken)
-$Sprite2D.flip_h = false  # Kijkt naar rechts
-$Sprite2D.flip_h = true   # Kijkt naar links
-```
-
-</details>
-
-<details>
-<summary>Hoe kies ik animaties op basis van beweging?</summary>
-
-```gdscript
-# Stilstaan
-if velocity.x == 0:
-    $Sprite2D.play('Idle')
-
-# In de lucht
-if not is_on_floor():
-    $Sprite2D.play('Jump')
-
-# Naar rechts bewegen
-if velocity.x > 0:
-    $Sprite2D.play('Run')
-    $Sprite2D.flip_h = false
-
-# Naar links bewegen
-if velocity.x < 0:
-    $Sprite2D.play('Run')
-    $Sprite2D.flip_h = true
-```
-
-</details>
-
----
-
-## Nodes openen in code
-
-<details>
-<summary>Hoe gebruik ik het <code>$</code>-teken?</summary>
-
-```gdscript
-$Sprite2D              # Toegang tot een child-node ($ is een snelkoppeling)
-$Sprite2D.play()       # Een functie aanroepen op een child-node
-$Sprite2D.flip_h       # Een eigenschap van een child-node lezen/aanpassen
-```
-
-</details>
-
----
-
-## Vergelijkingen & logica
-
-<details>
-<summary>Welke vergelijkingen kan ik gebruiken?</summary>
-
-```gdscript
-if velocity.x == 0:        # Is gelijk aan
-if velocity.x > 0:         # Groter dan
-if velocity.x < 0:         # Kleiner dan
-if not is_on_floor():       # NIET (draait true/false om)
-
-if conditie:
-    # doe iets
-else:
-    # doe iets anders
-```
-
-</details>
-
----
-
-## Resources (bestanden toevoegen)
-
-<details>
-<summary>Hoe voeg ik afbeeldingen toe aan mijn project (<code>res://</code>)?</summary>
-
-- Klik linksonder in Godot met de rechtermuisknop op `res://`
-- Kies daarna `Opening in bestandsbeheer`
-
-![res](../../docs/images/res.png)
-
-Er opent zich een map in je Windows Verkenner.
-Als je afbeeldingen wilt toevoegen aan je project, kopieer ze dan naar deze map. Wanneer je teruggaat naar Godot, zul je zien dat Godot even moet nadenken en daarna zijn je afbeeldingen te gebruiken in je project.
+**Instellen in de Inspector:**
+- `Text` — de tekst die getoond wordt
+- `Font Size` — lettertypegrootte
 
 </details>
 
@@ -246,6 +180,6 @@ Als je afbeeldingen wilt toevoegen aan je project, kopieer ze dan naar deze map.
 
 ## Handige links
 
-- [GDScript leren (interactief)](https://gdquest.github.io/learn-gdscript/)
-- [Pixel Adventure assets](https://pixelfrog-assets.itch.io/pixel-adventure-1)
 - [Godot documentatie](https://docs.godotengine.org/en/stable/)
+- [Pixel Adventure assets](https://pixelfrog-assets.itch.io/pixel-adventure-1)
+- [GDScript leren (interactief)](https://gdquest.github.io/learn-gdscript/)

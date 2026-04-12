@@ -1,5 +1,5 @@
 ---
-sidebar_position: 9
+sidebar_position: 10
 ---
 
 # Begrijpen basic movement script
@@ -95,7 +95,7 @@ Voeg onderstaande regel toe boven `if not is_on_floor():` en bekijk wat er gebeu
     <summary>Geef me de oplossing</summary>
 
 Maak je huidige script helemaal leeg en vervang het door onderstaande code.
-Als het goed is, zie je in de `Uitvoer` `false` als je hoofdpersoon de vloer raakt en `false` als dit niet zo is:
+Als het goed is, zie je in de `Uitvoer` `true` als je hoofdpersoon de vloer raakt en `false` als dit niet zo is:
 
 ![is_on_floor](images/is_on_floor.png)
 
