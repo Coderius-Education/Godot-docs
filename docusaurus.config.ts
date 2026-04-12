@@ -71,12 +71,12 @@ const config: Config = {
         },
         {
           to: '/cheatsheet',
-          label: 'Cheatsheet',
+          label: 'Nodes cheatsheet',
           position: 'left',
         },
         {
-          to: '/gdscript-tips',
-          label: 'GDScript Tips',
+          to: '/docs/cheatsheet',
+          label: 'GDScript Cheatsheet',
           position: 'left',
         },
         {

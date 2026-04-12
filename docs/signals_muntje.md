@@ -1,10 +1,34 @@
 ---
-sidebar_position: 12
+sidebar_position: 13
 ---
 
 # Signals & een muntje oppakken
 
 In deze les leer je wat **signals** zijn en hoe je ze gebruikt om een muntje op te pakken.
+
+## Predict
+
+Stel je hebt twee losse scripts: één voor je muntje en één voor je karakter. Je wil dat als het karakter het muntje raakt, het muntje verdwijnt.
+
+**Hoe zou jij dat aanpakken zonder signals?**
+
+Denk er even over na voordat je verder leest.
+
+<details>
+<summary>Bekijk het antwoord</summary>
+
+Zonder signals zou je vanuit het karakter-script het muntje moeten opzoeken:
+```gdscript
+# Vanuit het karakter-script
+var muntje = get_node("Muntje")
+muntje.queue_free()
+```
+
+Maar dit heeft een groot probleem: het karakter moet dan **weten** dat het muntje bestaat, waar het staat, en hoe het heet. Als je meerdere muntjes hebt, of als een muntje al verdwenen is, crasht je code.
+
+Signals lossen dit op: het muntje reageert zelf op de botsing, zonder dat het karakter er iets van hoeft te weten.
+
+</details>
 
 ## Wat zijn signals?
 
@@ -115,3 +139,51 @@ func _on_body_entered(body: Node2D) -> void:
 | **`queue_free()`** | Verwijdert een node uit het spel |
 | **`Area2D`** | Een node die botsingen kan detecteren zonder fysica (geen zwaartekracht, geen botsen) |
 | **Connect** | Een signal koppelen aan een functie |
+
+---
+
+## Make-opdracht: voeg een vijand toe
+
+Je hebt geleerd hoe een muntje reageert op een botsing. Pas dit nu zelf toe op een nieuwe situatie.
+
+**Opdracht:** Maak een **vijand**-scene. Als de speler de vijand raakt, verliest de speler een leven (`Global.levens -= 1`). De vijand verdwijnt daarna ook.
+
+<details>
+<summary>Tip</summary>
+
+- Gebruik dezelfde structuur als het muntje: een `Area2D` met een `Sprite2D` en `CollisionShape2D`
+- Koppel het `body_entered` signal aan een functie in het vijand-script
+- Gebruik `Global.levens` om een leven af te trekken (zorg dat `levens` bestaat in je `global.gd`)
+
+</details>
+
+<details>
+<summary>Antwoord</summary>
+
+**Scene structuur (vijand.tscn):**
+```
+Vijand (Area2D)
+├── Sprite2D
+└── CollisionShape2D
+```
+
+**Script (vijand.gd):**
+```gdscript
+extends Area2D
+
+func _on_body_entered(body: Node2D) -> void:
+    Global.levens -= 1
+    print("Levens over: ", Global.levens)
+    queue_free()
+```
+
+**Stappen:**
+1. Maak een nieuwe scene aan met `Area2D` als root, hernoem naar `Vijand`
+2. Voeg `Sprite2D` en `CollisionShape2D` toe
+3. Voeg een script toe en koppel het `body_entered` signal
+4. Schrijf de bovenstaande code
+5. Sla op als `vijand.tscn` en sleep hem in je level
+
+**Let op:** Zorg dat `var levens = 3` in je `global.gd` staat, anders geeft `Global.levens` een fout.
+
+</details>
