@@ -146,14 +146,14 @@ func _on_body_entered(body: Node2D) -> void:
 
 Je hebt geleerd hoe een muntje reageert op een botsing. Pas dit nu zelf toe op een nieuwe situatie.
 
-**Opdracht:** Maak een **vijand**-scene. Als de speler de vijand raakt, verliest de speler een leven (`Global.levens -= 1`). De vijand verdwijnt daarna ook.
+**Opdracht:** Maak een **vijand**-scene. Als de speler de vijand raakt, drukt de vijand een bericht af in de uitvoer en verdwijnt daarna.
 
 <details>
 <summary>Tip</summary>
 
 - Gebruik dezelfde structuur als het muntje: een `Area2D` met een `Sprite2D` en `CollisionShape2D`
 - Koppel het `body_entered` signal aan een functie in het vijand-script
-- Gebruik `Global.levens` om een leven af te trekken (zorg dat `levens` bestaat in je `global.gd`)
+- Gebruik `print()` om een bericht af te drukken, en `queue_free()` om de vijand te laten verdwijnen
 
 </details>
 
@@ -172,8 +172,7 @@ Vijand (Area2D)
 extends Area2D
 
 func _on_body_entered(body: Node2D) -> void:
-    Global.levens -= 1
-    print("Levens over: ", Global.levens)
+    print("Geraakt door vijand!")
     queue_free()
 ```
 
@@ -184,6 +183,8 @@ func _on_body_entered(body: Node2D) -> void:
 4. Schrijf de bovenstaande code
 5. Sla op als `vijand.tscn` en sleep hem in je level
 
-**Let op:** Zorg dat `var levens = 3` in je `global.gd` staat, anders geeft `Global.levens` een fout.
-
 </details>
+
+:::tip
+In de volgende les leer je hoe je een **levens-teller** bijhoudt met global variables. Dan kun je de vijand ook daadwerkelijk levens laten aftrekken.
+:::

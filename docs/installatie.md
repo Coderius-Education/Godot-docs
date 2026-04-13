@@ -6,6 +6,14 @@ sidebar_position: 1
 
 In deze handleiding installeren we de Godot-editor op je computer.
 
+
+:::note[Chromebook]
+Op een Chromebook kun je geen programma's installeren. Gebruik in dat geval de **online editor** via je browser: [editor.godotengine.org](https://editor.godotengine.org/)
+
+Je kunt daar direct aan de slag. Sla je project op door het te exporteren als zip. De rest van de handleiding werkt hetzelfde.
+:::
+
+
 ## Stap 1: De editor downloaden
 
 - Ga naar [deze link](https://godotengine.org/download/archive/)
