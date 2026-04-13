@@ -31,7 +31,14 @@ Maak de volgende lessen — de afbeelding hieronder toont welke lessen je nodig 
 ![gdscript leren](images/gdscript.png)
 
 :::tip
-Je hoeft niet alle lessen te maken — focus op de lessen die in de afbeelding zijn gemarkeerd. Die dekken precies de concepten die je in dit project gaat gebruiken.
+Je hoeft niet alle lessen te maken. Focus op de lessen over:
+- **Variabelen** (`var`)
+- **Functies** (`func`)
+- **Voorwaarden** (`if` / `else`)
+- **Vergelijkingsoperatoren** (`==`, `>`, `<`)
+- **`print()`**
+
+Die dekken precies de concepten die je in dit project gaat gebruiken.
 :::
 
 ## Wat daarna?

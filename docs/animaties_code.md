@@ -20,7 +20,7 @@ var staat_stil
 ```
 
 <details>
-    <summary>Kijk hier voor de oplossing!</summary>
+    <summary>Bekijk het antwoord</summary>
 
 ```gdscript
 extends CharacterBody2D
@@ -59,7 +59,7 @@ Welke functie kunnen we gebruiken om te weten of onze hoofdpersoon op de grond s
 - Hoe zou je in GDScript kunnen zeggen dat als je hoofdpersoon niet op de grond staat, dat dan de animatie `jump` afgespeeld moet worden?
 
 <details>
-    <summary>Kijk hier voor de oplossing!</summary>
+    <summary>Bekijk het antwoord</summary>
 
 ```gdscript
 extends CharacterBody2D
@@ -90,7 +90,7 @@ func _physics_process(delta: float) -> void:
 	
 	op_de_grond = is_on_floor()
 	if not op_de_grond:
-		$Sprite2D.play('jump')
+		$AnimatedSprite2D.play('jump')
 		
 	move_and_slide()
 ```
@@ -103,7 +103,7 @@ func _physics_process(delta: float) -> void:
 - Hoe zou je de animatie `idle` aan kunnen zetten als de hoofdpersoon stilstaat?
 
 <details>
-    <summary>Kijk hier voor de oplossing!</summary>
+    <summary>Bekijk het antwoord</summary>
 
 ```gdscript
 extends CharacterBody2D
@@ -134,10 +134,10 @@ func _physics_process(delta: float) -> void:
 	
 	staat_stil = velocity.x == 0	
 	if staat_stil:
-		$Sprite2D.play('idle')
+		$AnimatedSprite2D.play('idle')
 	op_de_grond = is_on_floor()
 	if not op_de_grond:
-		$Sprite2D.play('jump')
+		$AnimatedSprite2D.play('jump')
 		
 	move_and_slide()
 ```
@@ -148,10 +148,10 @@ func _physics_process(delta: float) -> void:
 `velocity.x` houdt de beweging op de horizontale as bij.
 - Bij welke waarde van `velocity.x` beweegt je hoofdpersoon naar links? En bij welke waarde naar rechts?
 - Hoe zou je de animatie `run` aan als je hoofdpersoon niet stilstaat?
-- We gebruiken `$Sprite2D.flip_h = true` om je afbeelding te spiegelen (dus dat de hoofdpersoon naar links kijkt in plaats van naar rechts). Hoe zou je dit kunnen gebruiken in je script?
+- We gebruiken `$AnimatedSprite2D.flip_h = true` om je afbeelding te spiegelen (dus dat de hoofdpersoon naar links kijkt in plaats van naar rechts). Hoe zou je dit kunnen gebruiken in je script?
 
 <details>
-    <summary>Kijk hier voor de oplossing!</summary>
+    <summary>Bekijk het antwoord</summary>
 
 ```gdscript
 extends CharacterBody2D
@@ -182,17 +182,17 @@ func _physics_process(delta: float) -> void:
 	
 	staat_stil = velocity.x == 0	
 	if staat_stil:
-		$Sprite2D.play('idle')
+		$AnimatedSprite2D.play('idle')
 	op_de_grond = is_on_floor()
 	if not op_de_grond:
-		$Sprite2D.play('jump')
+		$AnimatedSprite2D.play('jump')
 		
 	if velocity.x > 0:
-		$Sprite2D.play('run')
-		$Sprite2D.flip_h = false	
+		$AnimatedSprite2D.play('run')
+		$AnimatedSprite2D.flip_h = false	
 	if velocity.x < 0:
-		$Sprite2D.play('run')
-		$Sprite2D.flip_h = true	
+		$AnimatedSprite2D.play('run')
+		$AnimatedSprite2D.flip_h = true	
 		
 	move_and_slide()
 ```

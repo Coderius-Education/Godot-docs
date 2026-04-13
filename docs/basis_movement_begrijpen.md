@@ -12,7 +12,7 @@ De eerste keren dat je dit script bekijkt kan het lastig zijn. Vandaar hier enke
 Pas de waarde aan van `SPEED` naar 1000 en bekijk wat er gebeurt.
 
 <details>
-    <summary>Geef me de oplossing</summary>
+    <summary>Bekijk het antwoord</summary>
 
 Maak je huidige script helemaal leeg en vervang het door onderstaande code.
 Als het goed is, gaat je character sneller bewegen.
@@ -51,7 +51,7 @@ func _physics_process(delta: float) -> void:
 Pas de waarde aan van `JUMP_VELOCITY` naar -800 en bekijk wat er gebeurt.
 
 <details>
-    <summary>Geef me de oplossing</summary>
+    <summary>Bekijk het antwoord</summary>
 
 Maak je huidige script helemaal leeg en vervang het door onderstaande code.
 Als het goed is, gaat je character hoger springen.
@@ -61,8 +61,8 @@ Linksboven bij Godot is x=0 en y=0. Naar rechts wordt x hoger en naar beneden wo
 extends CharacterBody2D
 
 
-const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
+const SPEED = 1000.0
+const JUMP_VELOCITY = -800.0
 
 
 func _physics_process(delta: float) -> void:
@@ -92,7 +92,7 @@ De functie `is_on_floor()` is erg belangrijk, want deze vertelt ons of de hoofdp
 Voeg onderstaande regel toe boven `if not is_on_floor():` en bekijk wat er gebeurt.
 
 <details>
-    <summary>Geef me de oplossing</summary>
+    <summary>Bekijk het antwoord</summary>
 
 Maak je huidige script helemaal leeg en vervang het door onderstaande code.
 Als het goed is, zie je in de `Uitvoer` `true` als je hoofdpersoon de vloer raakt en `false` als dit niet zo is:
@@ -153,7 +153,7 @@ print(velocity)
 ```
 
 <details>
-    <summary>Geef me de oplossing</summary>
+    <summary>Bekijk het antwoord</summary>
 
 Maak je huidige script helemaal leeg en vervang het door onderstaande code.
 ```gdscript
@@ -191,7 +191,7 @@ Als je goed kijkt in de uitvoer, zie je verschillende waardes.
 - Welke waardes zie je als je hoofdpersoon naar links gaat?
 
 <details>
-    <summary>Geef me de oplossing</summary>
+    <summary>Bekijk het antwoord</summary>
 
 Stilstaan: (0,0)
 Naar links: (-300, 0)
