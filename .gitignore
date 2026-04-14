@@ -9,6 +9,8 @@
 .cache-loader
 
 # Misc
+.claude
+CLAUDE.md
 .DS_Store
 .env.local
 .env.development.local

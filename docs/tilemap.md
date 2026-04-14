@@ -4,8 +4,21 @@ sidebar_position: 6
 
 # Tilemap & Tileset
 
-- Gebruik niet `TileMap` maar `TileMapLayer`!
-- Let bij het slepen van de `Tileset` erop dat je onderaan eerst op `Tileset` klikt.
+In deze stap bouw je je level op met tegels (tiles). Je gebruikt een `TileMapLayer` om de grond, platforms en muren te tekenen.
+
+## Wat ga je doen?
+
+- Een `TileMapLayer` node toevoegen aan je scène
+- Een `TileSet` aanmaken vanuit een tileset-afbeelding
+- Tiles tekenen in de editor om je level vorm te geven
+
+:::note
+Godot heeft twee vergelijkbare nodes: `TileMap` (oud) en `TileMapLayer` (nieuw). Gebruik altijd **`TileMapLayer`** — de video gebruikt mogelijk nog de oude naam.
+:::
+
+:::tip
+Sleep de tileset-afbeelding naar het juiste veld: klik onderaan eerst op het tabblad **TileSet** voordat je sleept, anders wordt de afbeelding niet herkend.
+:::
 
 <iframe width="100%" height="500px" src="https://www.youtube.com/embed/5V9f3MT86M8?start=240&end=347" title="Start Your Game Creation Journey Today! (Godot beginner tutorial)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 

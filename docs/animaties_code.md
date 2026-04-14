@@ -2,7 +2,7 @@
 sidebar_position: 12
 ---
 
-# Animations in GDScript
+# Animaties in GDScript
 
 ## Informatie opvragen
 We hebben drie stukjes informatie nodig:
@@ -15,7 +15,6 @@ Plaats dit bovenaan je script (onder `JUMP_VELOCITY` en boven `_physics_process`
 
 ```gdscript
 var op_de_grond
-var kijkt_naar_rechts
 var staat_stil
 ```
 
@@ -29,7 +28,6 @@ const SPEED = 300.0
 const JUMP_VELOCITY = -800.0
 
 var op_de_grond
-var kijkt_naar_rechts
 var staat_stil
 
 func _physics_process(delta: float) -> void:
@@ -68,7 +66,6 @@ const SPEED = 300.0
 const JUMP_VELOCITY = -800.0
 
 var op_de_grond
-var kijkt_naar_rechts
 var staat_stil
 
 func _physics_process(delta: float) -> void:
@@ -112,7 +109,6 @@ const SPEED = 300.0
 const JUMP_VELOCITY = -800.0
 
 var op_de_grond
-var kijkt_naar_rechts
 var staat_stil
 
 func _physics_process(delta: float) -> void:
@@ -160,7 +156,6 @@ const SPEED = 300.0
 const JUMP_VELOCITY = -800.0
 
 var op_de_grond
-var kijkt_naar_rechts
 var staat_stil
 
 func _physics_process(delta: float) -> void:
