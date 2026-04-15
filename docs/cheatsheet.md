@@ -108,10 +108,10 @@ move_and_slide()
 ## Nodes aanspreken
 
 ```gdscript
-$Sprite2D                   # node op naam uit de Scene Tree
-$Sprite2D.play("run")       # methode aanroepen
-$Sprite2D.flip_h = true     # eigenschap instellen (kijk naar links)
-$Sprite2D.flip_h = false    # eigenschap instellen (kijk naar rechts)
+$AnimatedSprite2D                   # node op naam uit de Scene Tree
+$AnimatedSprite2D.play("run")       # methode aanroepen
+$AnimatedSprite2D.flip_h = true     # eigenschap instellen (kijk naar links)
+$AnimatedSprite2D.flip_h = false    # eigenschap instellen (kijk naar rechts)
 
 queue_free()    # verwijder deze node uit het spel
 
@@ -158,16 +158,18 @@ $AnimatedSprite2D.play("idle")   # stilstaan
 $AnimatedSprite2D.play("run")    # rennen
 $AnimatedSprite2D.play("jump")   # springen
 
-# Animatielogica
+# Animatielogica — gebruik elif zodat maar één animatie per frame afspeelt
 staat_stil = velocity.x == 0
 op_de_grond = is_on_floor()
 
-if staat_stil:                          $AnimatedSprite2D.play("idle")
-if not op_de_grond:                     $AnimatedSprite2D.play("jump")
-if velocity.x > 0:
+if not op_de_grond:
+    $AnimatedSprite2D.play("jump")
+elif staat_stil:
+    $AnimatedSprite2D.play("idle")
+elif velocity.x > 0:
     $AnimatedSprite2D.play("run")
     $AnimatedSprite2D.flip_h = false    # kijk rechts
-if velocity.x < 0:
+elif velocity.x < 0:
     $AnimatedSprite2D.play("run")
     $AnimatedSprite2D.flip_h = true     # kijk links
 ```

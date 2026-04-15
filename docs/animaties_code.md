@@ -4,6 +4,8 @@ sidebar_position: 12
 
 # Animaties in GDScript
 
+In deze les koppel je de animaties aan de beweging van je karakter. Je leert hoe je GDScript-variabelen gebruikt om te bepalen welke animatie op welk moment afspeelt.
+
 ## Informatie opvragen
 We hebben drie stukjes informatie nodig:
 1. Bevindt onze hoofdpersoon zich op de grond?
@@ -128,12 +130,12 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)	
 	
-	staat_stil = velocity.x == 0	
-	if staat_stil:
-		$AnimatedSprite2D.play('idle')
+	staat_stil = velocity.x == 0
 	op_de_grond = is_on_floor()
 	if not op_de_grond:
 		$AnimatedSprite2D.play('jump')
+	elif staat_stil:
+		$AnimatedSprite2D.play('idle')
 		
 	move_and_slide()
 ```
@@ -143,7 +145,7 @@ func _physics_process(delta: float) -> void:
 ## Richting
 `velocity.x` houdt de beweging op de horizontale as bij.
 - Bij welke waarde van `velocity.x` beweegt je hoofdpersoon naar links? En bij welke waarde naar rechts?
-- Hoe zou je de animatie `run` aan als je hoofdpersoon niet stilstaat?
+- Hoe zou je de animatie `run` aanzetten als je hoofdpersoon niet stilstaat?
 - We gebruiken `$AnimatedSprite2D.flip_h = true` om je afbeelding te spiegelen (dus dat de hoofdpersoon naar links kijkt in plaats van naar rechts). Hoe zou je dit kunnen gebruiken in je script?
 
 <details>
@@ -175,19 +177,18 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)	
 	
-	staat_stil = velocity.x == 0	
-	if staat_stil:
-		$AnimatedSprite2D.play('idle')
+	staat_stil = velocity.x == 0
 	op_de_grond = is_on_floor()
 	if not op_de_grond:
 		$AnimatedSprite2D.play('jump')
-		
-	if velocity.x > 0:
+	elif staat_stil:
+		$AnimatedSprite2D.play('idle')
+	elif velocity.x > 0:
 		$AnimatedSprite2D.play('run')
-		$AnimatedSprite2D.flip_h = false	
-	if velocity.x < 0:
+		$AnimatedSprite2D.flip_h = false
+	elif velocity.x < 0:
 		$AnimatedSprite2D.play('run')
-		$AnimatedSprite2D.flip_h = true	
+		$AnimatedSprite2D.flip_h = true
 		
 	move_and_slide()
 ```

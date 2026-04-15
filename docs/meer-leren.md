@@ -52,8 +52,6 @@ Wat je leert:
 
 ---
 
----
-
 ## Godot Foundational Series
 
 Een grondige YouTube-serie die alle basisbegrippen van Godot behandelt: scenes, nodes, signals, resources en meer. Goed als je alles wat je tot nu toe hebt geleerd beter wilt begrijpen.

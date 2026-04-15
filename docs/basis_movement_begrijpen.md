@@ -4,6 +4,8 @@ sidebar_position: 10
 
 # Begrijpen basic movement script
 
+In deze les leer je wat de verschillende onderdelen van het bewegingsscript doen. Je past elke waarde aan en bekijkt direct het effect in het spel.
+
 De volgende opdrachten helpen je bij het begrijpen van het `basis movement script` dat Godot als standaard voorstelt.
 De eerste keren dat je dit script bekijkt kan het lastig zijn. Vandaar hier enkele opdrachten om het script in de vingers te krijgen.
 

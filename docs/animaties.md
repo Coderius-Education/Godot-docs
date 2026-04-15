@@ -51,6 +51,18 @@ Zet de **FPS** (frames per seconde) van elke animatie op een waarde die er soepe
 </details>
 
 <details>
+<summary>Ik krijg een fout: "Attempt to call function on a null instance"</summary>
+
+**Oorzaak:** Godot kan de node `$AnimatedSprite2D` niet vinden. De naam in je script komt niet overeen met de naam in de Scene Tree.
+
+**Oplossing:**
+- Klik op de `AnimatedSprite2D` in de Scene Tree en controleer de exacte naam (hoofdlettergevoelig)
+- Zorg dat je script `$AnimatedSprite2D` gebruikt — met exact dezelfde naam
+- Controleer of de `AnimatedSprite2D` een **child** is van de `CharacterBody2D`, niet los in de scene
+
+</details>
+
+<details>
 <summary>De animatie bevriest op één frame</summary>
 
 **Oorzaak:** De animatie is niet ingesteld op loopen, of er zit maar één frame in de animatie.

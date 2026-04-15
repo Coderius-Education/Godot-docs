@@ -44,3 +44,5 @@ Die dekken precies de concepten die je in dit project gaat gebruiken.
 ## Wat daarna?
 
 Na deze lessen ga je het bewegingsscript van je karakter stap voor stap uitleggen en aanpassen. Je hoeft de tutorial niet perfect te begrijpen — als je de bovenstaande concepten globaal kent, kom je al een heel eind.
+
+Tijdens de volgende lessen kun je de [GDScript cheatsheet](/cheatsheet) gebruiken als naslagwerk voor syntax.

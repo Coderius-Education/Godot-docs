@@ -122,6 +122,20 @@ Geen paniek! Zoek hieronder je probleem op. De oplossingen zijn gegroepeerd per 
 
 ## Visueel & animaties
 
+## Ik krijg een fout: "Attempt to call function on a null instance"
+
+<details>
+<summary>Oorzaak: $AnimatedSprite2D bestaat niet — verkeerde naam of node ontbreekt</summary>
+
+**Oorzaak:** Godot kan de node `$AnimatedSprite2D` niet vinden. Dit betekent dat de naam in je script niet overeenkomt met de naam in de Scene Tree, of dat je nog `$Sprite2D` gebruikt terwijl die node is vervangen.
+
+**Oplossing:**
+- Controleer de naam in de Scene Tree: staat er `AnimatedSprite2D`? Dat is de **exacte** naam die je in je script moet gebruiken (hoofdlettergevoelig)
+- Controleer of je script `$AnimatedSprite2D` gebruikt — niet `$Sprite2D`
+- Is de `AnimatedSprite2D` een **child** van de `CharacterBody2D`? Anders kan het script hem niet vinden met `$`
+
+</details>
+
 ## Mijn animatie speelt niet af
 
 <details>
