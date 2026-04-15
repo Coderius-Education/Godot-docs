@@ -151,54 +151,66 @@ Gebruik global variables voor dingen die je in meerdere scenes nodig hebt, zoals
 
 ---
 
-## Make-opdracht: levens weergeven
+## Er gaat iets mis
+
+<details>
+<summary>Global werkt niet / <code>Global.score</code> geeft een fout</summary>
+
+**Oorzaak:** `Global` is geen ingebouwd Godot-concept. Het is een script dat je zelf als Autoload moet registreren. Zonder die instelling kent Godot de naam `Global` niet.
+
+**Oplossing:**
+1. Ga naar **Project → Project Settings → Autoload**
+2. Klik op het mapje naast **Path** en kies `global.gd`
+3. Vul bij **Node Name** precies `Global` in (met hoofdletter G)
+4. Klik op **Add**
+
+</details>
+
+<details>
+<summary>Mijn score-variabele reset elke keer als ik een nieuwe scene laad</summary>
+
+**Oorzaak:** Je gebruikt een gewone `var score = 0` in een script dat aan een node is gekoppeld. Als die node verdwijnt (bijv. bij het laden van een nieuwe scene), verdwijnt ook de variabele.
+
+**Oplossing:** Zet de variabele in `global.gd` in plaats van in het node-script. Dat script blijft de hele speelsessie bestaan.
+
+</details>
+
+---
+
+## Make-opdracht: score weergeven
 
 Je hebt geleerd hoe global variables werken. Pas het nu zelf toe.
 
-**Opdracht:** Voeg een `levens`-variabele toe aan `global.gd`. Maak een `Label` in je level dat het aantal levens toont. Zorg dat wanneer je karakter te ver naar beneden valt (`position.y > 1000`), het een leven verliest.
+**Opdracht:** Maak een `Label`-node in je level-scene die de huidige score toont. De score moet automatisch bijwerken zodra je een muntje oppakt.
 
 <details>
 <summary>Tip</summary>
 
-- Voeg `var levens = 3` toe aan `global.gd`
-- Voeg een `Label` node toe aan je level-scene (bijv. als child van een `CanvasLayer`)
-- Gebruik `_process(delta)` in het Label-script om elke frame de tekst bij te werken
-- Check in het karakter-script elke frame of `position.y > 1000`
+- Voeg een `Label` node toe aan je level-scene (klik met rechts op de root node → **Add Child Node** → zoek `Label`)
+- Geef de Label een naam, bijv. `ScoreLabel`
+- Koppel een script aan de Label
+- Gebruik `_process(delta)` om elke frame de tekst bij te werken: `text = "Score: " + str(Global.score)`
+- De `Global.score` wordt al bijgehouden in je muntje-script — je hoeft dat niet aan te passen
 
 </details>
 
 <details>
 <summary>Antwoord</summary>
 
-**global.gd:**
-```gdscript
-extends Node
+**Stappen:**
+1. Open je level-scene
+2. Klik met rechts op de root node → **Add Child Node** → kies `Label`
+3. Hernoem de Label naar `ScoreLabel`
+4. Koppel een script aan de Label (**Attach Script** → **Create**)
+5. Schrijf dit script:
 
-var score = 0
-var levens = 3
-```
-
-**Label-script (levens_label.gd):**
 ```gdscript
 extends Label
 
 func _process(delta: float) -> void:
-    text = "Levens: " + str(Global.levens)
+    text = "Score: " + str(Global.score)
 ```
 
-**Karakter-script (toevoegen aan `_physics_process`):**
-```gdscript
-if position.y > 1000:
-    Global.levens -= 1
-    position = Vector2(100, 100)  # Reset naar startpositie
-    print("Levens over: ", Global.levens)
-```
-
-**Stappen:**
-1. Voeg `var levens = 3` toe aan `global.gd`
-2. Voeg een `CanvasLayer` toe aan je level-scene (voor UI die altijd zichtbaar blijft)
-3. Voeg een `Label` toe als child van de `CanvasLayer`
-4. Koppel het label-script hieraan
-5. Voeg de val-check toe aan je karakter-script
+Zodra je een muntje oppakt, verhoogt `Global.score` in het muntje-script, en de Label toont de nieuwe waarde automatisch.
 
 </details>

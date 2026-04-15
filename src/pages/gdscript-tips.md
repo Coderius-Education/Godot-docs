@@ -148,14 +148,14 @@ if is_on_floor() and Input.is_action_just_pressed("ui_accept"):
 
 # Eén van de twee moet waar zijn
 if velocity.x > 0 or velocity.x < 0:
-    $Sprite2D.play('Run')
+    $AnimatedSprite2D.play("run")
 ```
 
 Met `not` draai je een voorwaarde om:
 
 ```gdscript
 if not is_on_floor():
-    $Sprite2D.play('Jump')
+    $AnimatedSprite2D.play("jump")
 ```
 
 </details>
@@ -214,12 +214,12 @@ velocity.x = direction * SPEED
 `$` is een snelkoppeling om een **child-node** op te zoeken op naam:
 
 ```gdscript
-$Sprite2D             # Zoekt de child-node genaamd "Sprite2D"
-$Sprite2D.play('Run') # Roept een functie aan op die node
-$Sprite2D.flip_h      # Leest een eigenschap van die node
+$AnimatedSprite2D              # Zoekt de child-node genaamd "AnimatedSprite2D"
+$AnimatedSprite2D.play("run")  # Roept een functie aan op die node
+$AnimatedSprite2D.flip_h       # Leest een eigenschap van die node
 ```
 
-`$Sprite2D` is hetzelfde als `get_node("Sprite2D")`, maar korter.
+`$AnimatedSprite2D` is hetzelfde als `get_node("AnimatedSprite2D")`, maar korter.
 
 **Let op:** De naam moet **exact** overeenkomen met de naam in de scene tree (hoofdlettergevoelig!).
 
