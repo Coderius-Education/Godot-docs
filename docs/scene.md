@@ -4,6 +4,13 @@ sidebar_position: 4
 
 # Scène
 
+In Godot is alles opgebouwd uit **nodes** en **scènes**.
+
+- Een **node** is een bouwblok met een specifieke taak: een afbeelding tonen, botsingen detecteren, geluid afspelen.
+- Een **scène** is een groep nodes die samenwerken — opgeslagen als één herbruikbaar bestand.
+
+Je level is een scène. Je karakter is een scène. Een muntje is een scène. Alles wat je maakt, sla je op als scène (`.tscn`).
+
 In deze stap maak je de eerste scène aan — dit is de "wereld" waar je spel zich afspeelt.
 
 ## Wat ga je doen?

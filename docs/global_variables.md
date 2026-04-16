@@ -8,29 +8,28 @@ Wat als een score wilt bijhouden? Bijvoorbeeld in een UI, een game-over scherm, 
 
 ## Predict
 
-Je hebt een score-variabele in je muntje-script. Je wil die score ook zichtbaar maken in een `Label` bovenaan het scherm.
+Stel: je wil een score bijhouden. Elke keer dat je een muntje oppakt, moet de score met 1 ophogen. Je wil die score ook zichtbaar maken in een label bovenaan het scherm.
 
 **Hoe zou jij dat aanpakken als je nog geen global variables kent?**
 
 <details>
 <summary>Bekijk het antwoord</summary>
 
-Zonder global variables zou je het Label moeten opzoeken vanuit het muntje-script:
+Zonder global variables zou je de score moeten opslaan in het muntje-script zelf:
 
 ```gdscript
 # In muntje.gd
+var score = 0
+
 func _on_body_entered(body: Node2D) -> void:
-    var score_label = get_tree().get_root().get_node("World/UI/ScoreLabel")
-    score_label.text = "Score: " + str(score + 1)
-    queue_free()
+    score += 1
+    print("Score: ", score)
+    queue_free()  # Het muntje verdwijnt — en daarmee ook de score-variabele
 ```
 
-Dit is om meerdere redenen problematisch:
-- Je moet het **exacte pad** naar het Label kennen — als je iets hernoemt, crasht de code
-- De score-waarde staat in het muntje, maar het muntje verdwijnt na het oppakken
-- Als je een ander level hebt, werkt het pad niet meer
+Dit heeft een groot probleem: zodra het muntje verdwijnt (`queue_free()`), verdwijnt ook de `score`-variabele. Je kunt de score dan niet meer lezen vanuit een Label of een ander script.
 
-Global variables lossen dit op: één plek voor de score, toegankelijk vanuit elk script.
+Global variables lossen dit op: één plek voor de score, buiten alle nodes om, die de hele speelsessie beschikbaar blijft.
 
 </details>
 
