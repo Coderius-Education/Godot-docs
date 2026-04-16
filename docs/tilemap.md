@@ -24,7 +24,7 @@ Sleep de tileset-afbeelding naar het juiste veld: klik onderaan eerst op het tab
 
 ## Physics Layer toevoegen
 
-Zonder een physics layer valt je karakter dwars door de tiles heen. Een physics layer zorgt ervoor dat tiles **collision** (botsing) krijgen.
+Zonder een physics layer heeft de TileMapLayer geen botsingsvlak. Je karakter — dat je in de volgende stap aanmaakt — zou er dan doorheen vallen. Een physics layer zorgt ervoor dat tiles **collision** (botsing) krijgen.
 
 ### Stap 1: Open de TileSet
 
@@ -68,12 +68,10 @@ Soms wil je de collision shape van een specifieke tile aanpassen (bijv. voor een
 
 ### Controleren of het werkt
 
-Start je spel en kijk of je karakter:
-- Op de grond-tiles kan staan
-- Niet door muren heen loopt
-- Niet door platformen heen valt
+Je kunt dit pas testen nadat je in de volgende stap een karakter hebt aangemaakt. Kom dan terug om te controleren of je karakter op de tiles kan staan en er niet doorheen valt.
 
-Als je karakter nog steeds door tiles valt, controleer dan:
+:::tip
+Als het karakter later toch door tiles valt, controleer dan:
 - Heeft je `TileMapLayer` een `TileSet` met een **Physics Layer**?
 - Heb je collision **toegewezen** aan de juiste tiles?
-- Heeft je karakter (`CharacterBody2D`) een eigen `CollisionShape2D`?
+:::

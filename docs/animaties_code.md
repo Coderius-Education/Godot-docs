@@ -26,7 +26,7 @@ var staat_stil
 ```gdscript
 extends CharacterBody2D
 
-const SPEED = 300.0
+const SPEED = 300.0        # Gebruik jouw eigen waarde
 const JUMP_VELOCITY = -800.0
 
 var op_de_grond
@@ -64,7 +64,7 @@ Welke functie kunnen we gebruiken om te weten of onze hoofdpersoon op de grond s
 ```gdscript
 extends CharacterBody2D
 
-const SPEED = 300.0
+const SPEED = 300.0        # Gebruik jouw eigen waarde
 const JUMP_VELOCITY = -800.0
 
 var op_de_grond
@@ -107,7 +107,7 @@ func _physics_process(delta: float) -> void:
 ```gdscript
 extends CharacterBody2D
 
-const SPEED = 300.0
+const SPEED = 300.0        # Gebruik jouw eigen waarde
 const JUMP_VELOCITY = -800.0
 
 var op_de_grond
@@ -154,7 +154,7 @@ func _physics_process(delta: float) -> void:
 ```gdscript
 extends CharacterBody2D
 
-const SPEED = 300.0
+const SPEED = 300.0        # Gebruik jouw eigen waarde
 const JUMP_VELOCITY = -800.0
 
 var op_de_grond

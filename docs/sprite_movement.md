@@ -11,6 +11,48 @@ In deze stap voeg je een script toe aan je karakter zodat het kan bewegen en spr
 - Een GDScript toevoegen aan je `CharacterBody2D`
 - Het standaard bewegingsscript van Godot gebruiken als startpunt
 
+## Predict
+
+Godot genereert automatisch een startscript als je een script koppelt aan een `CharacterBody2D`. Hier is dat script:
+
+```gdscript
+extends CharacterBody2D
+
+const SPEED = 300.0
+const JUMP_VELOCITY = -400.0
+
+func _physics_process(delta: float) -> void:
+    if not is_on_floor():
+        velocity += get_gravity() * delta
+
+    if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+        velocity.y = JUMP_VELOCITY
+
+    var direction := Input.get_axis("ui_left", "ui_right")
+    if direction:
+        velocity.x = direction * SPEED
+    else:
+        velocity.x = move_toward(velocity.x, 0, SPEED)
+
+    move_and_slide()
+```
+
+**Wat denk je dat dit script doet? Welke regels herken je?**
+
+<details>
+<summary>Bekijk het antwoord</summary>
+
+- `extends CharacterBody2D` — dit script hoort bij een `CharacterBody2D` node
+- `SPEED` en `JUMP_VELOCITY` — vaste waarden voor snelheid en sprongkracht
+- `if not is_on_floor()` — als het karakter niet op de grond staat, voeg zwaartekracht toe
+- `if Input.is_action_just_pressed("ui_accept")` — als de spatiebalk wordt ingedrukt én het karakter staat op de grond: spring
+- `Input.get_axis("ui_left", "ui_right")` — geeft -1 (links), 0 (stil) of 1 (rechts) terug
+- `move_and_slide()` — past de beweging toe op het karakter
+
+Je hoeft dit nu nog niet volledig te begrijpen. In de volgende les ga je elk onderdeel stap voor stap onderzoeken.
+
+</details>
+
 ## Stappen
 
 1. Selecteer je `CharacterBody2D` node in de Scene Tree
