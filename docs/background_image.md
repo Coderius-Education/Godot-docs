@@ -10,7 +10,7 @@ sidebar_position: 6
 - De afbeelding schalen zodat hij het hele scherm vult
 
 :::note
-Heb je de assets nog niet gedownload? Volg dan eerst de stappen op de pagina [Bestanden downloaden](/bestanden-downloaden).
+Heb je de assets nog niet gedownload? Volg dan eerst de stappen op de pagina [Bestanden downloaden](bestanden-downloaden).
 :::
 
 Als je `Green.png` hebt toegevoegd, zie je dat het erg klein is. Vergroot de afbeelding in de viewport tot de randen van de blauwe lijnen (de schermgrenzen).
