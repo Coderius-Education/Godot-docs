@@ -1,5 +1,5 @@
 ---
-sidebar_position: 5
+sidebar_position: 6
 ---
 
 # Achtergrond
@@ -9,12 +9,8 @@ sidebar_position: 5
 - Een achtergrondafbeelding toevoegen aan je scène
 - De afbeelding schalen zodat hij het hele scherm vult
 
-:::tip
-De assets uit de video vind je hier: [pixelfrog-assets.itch.io/pixel-adventure-1](https://pixelfrog-assets.itch.io/pixel-adventure-1)
-:::
-
 :::note
-De video sleept bestanden rechtstreeks naar Godot. Dat werkt alleen als je bestanden al in je projectmap staan. Kopieer afbeeldingen eerst naar je projectmap — zie [Er gaat iets mis → Mijn bestanden staan niet in het project](/er-gaat-iets-mis#mijn-bestanden-staan-niet-in-het-project) voor de stappen.
+Heb je de assets nog niet gedownload? Volg dan eerst de stappen op de pagina [Bestanden downloaden](/bestanden-downloaden).
 :::
 
 Als je `Green.png` hebt toegevoegd, zie je dat het erg klein is. Vergroot de afbeelding in de viewport tot de randen van de blauwe lijnen (de schermgrenzen).
