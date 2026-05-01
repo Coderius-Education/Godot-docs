@@ -1,5 +1,5 @@
 ---
-sidebar_position: 8
+sidebar_position: 9
 ---
 
 # Sprite
@@ -41,7 +41,7 @@ CharacterBody2D
 **Oplossing:**
 1. Controleer of je `CharacterBody2D` een `CollisionShape2D` child heeft
 2. Controleer of die `CollisionShape2D` een **Shape** heeft ingesteld (bijv. `CapsuleShape2D`)
-3. Controleer of je TileMap een **Physics Layer** heeft — zie de [Tilemap](tilemap) pagina
+3. Controleer of je TileMapLayer een **Physics Layer** heeft — zie de [Level bouwen: Tilemap & Collision](./tilemap_en_collision.md) pagina
 
 </details>
 
