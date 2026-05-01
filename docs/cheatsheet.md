@@ -1,5 +1,5 @@
 ---
-sidebar_position: 16
+sidebar_position: 17
 ---
 
 # Cheatsheet
@@ -11,10 +11,13 @@ Snelle naslag — alleen syntax, geen uitleg.
 ## Variabelen
 
 ```gdscript
-var naam      = "speler"   # tekst     (String)
-var score     = 0          # geheel getal (int)
-var snelheid  = 3.14       # decimaal  (float)
-var is_actief = true       # waar/niet waar (bool)
+var naam: String = "speler"   # tekst     (String)
+var score: int   = 0          # geheel getal (int)
+var snelheid := 3.14          # := Godot bepaalt zelf dat dit een float is
+var is_actief: bool = true    # waar/niet waar (bool)
+
+# Vector2 is onmisbaar in 2D games (een X en een Y positie samen)
+var start_positie = Vector2(100, 200) # x=100, y=200
 
 const SPEED         = 300.0    # vaste waarde — verandert nooit
 const JUMP_VELOCITY = -800.0
@@ -73,6 +76,9 @@ not  # omgekeerd        (not is_on_floor())
 ## Input
 
 ```gdscript
+# Je kunt acties zoals "ui_accept" vinden en aanpassen via:
+# Project → Project Settings → Input Map
+
 # Eenmalig indrukken (bijv. springen)
 Input.is_action_just_pressed("ui_accept")   # spatie
 
@@ -159,8 +165,8 @@ $AnimatedSprite2D.play("run")    # rennen
 $AnimatedSprite2D.play("jump")   # springen
 
 # Animatielogica — gebruik elif zodat maar één animatie per frame afspeelt
-staat_stil = velocity.x == 0
-op_de_grond = is_on_floor()
+var staat_stil = velocity.x == 0
+var op_de_grond = is_on_floor()
 
 if not op_de_grond:
     $AnimatedSprite2D.play("jump")

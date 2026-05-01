@@ -1,5 +1,5 @@
 ---
-sidebar_position: 13
+sidebar_position: 14
 ---
 
 # Animaties in GDScript
@@ -245,5 +245,44 @@ elif velocity.x < 0:
 ```
 
 **Vergeet niet** om in SpriteFrames de `landing`-animatie aan te maken en **Loop uit te zetten**, anders speelt hij continu opnieuw af.
+
+</details>
+
+---
+
+## Er gaat iets mis
+
+<details>
+<summary>Mijn karakter speelt altijd de <code>jump</code>-animatie, ook op de grond</summary>
+
+**Oorzaak:** De variabele `op_de_grond` wordt niet (op tijd) bijgewerkt. Daardoor blijft `not op_de_grond` waar.
+
+**Oplossing:** Zorg dat `op_de_grond = is_on_floor()` **boven** je if/elif-keten staat — niet eronder en niet binnen een if-blok.
+
+</details>
+
+<details>
+<summary>Mijn karakter kijkt de verkeerde kant op tijdens het rennen</summary>
+
+**Oorzaak:** `flip_h` staat op de verkeerde waarde.
+
+**Oplossing:** Onthoud:
+- `flip_h = false` → karakter kijkt **rechts** (de standaard)
+- `flip_h = true` → karakter kijkt **links** (gespiegeld)
+
+Dus bij `velocity.x < 0` (links bewegen): `flip_h = true`.
+
+</details>
+
+<details>
+<summary>De idle-animatie start niet als ik stilsta</summary>
+
+**Oorzaak:** Twee mogelijke oorzaken:
+1. De volgorde van je `if` / `elif` is verkeerd: `velocity.x > 0` of `velocity.x < 0` wordt eerder waar dan `staat_stil`.
+2. `staat_stil = velocity.x == 0` wordt nooit waar omdat `move_toward` heel kleine waardes (0.0001) overlaat.
+
+**Oplossing:**
+- Controleer dat `elif staat_stil:` staat tussen `if not op_de_grond:` en `elif velocity.x > 0:`
+- Werk `staat_stil` bij **vlak voor** je if-keten, niet erboven aan het script
 
 </details>

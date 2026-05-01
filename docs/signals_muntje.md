@@ -1,5 +1,5 @@
 ---
-sidebar_position: 14
+sidebar_position: 15
 ---
 
 # Signals & een muntje oppakken
@@ -188,3 +188,42 @@ func _on_body_entered(body: Node2D) -> void:
 :::tip
 In de volgende les leer je hoe je een **levens-teller** bijhoudt met global variables. Dan kun je de vijand ook daadwerkelijk levens laten aftrekken.
 :::
+
+---
+
+## Er gaat iets mis
+
+<details>
+<summary>Mijn karakter loopt door het muntje heen zonder dat het verdwijnt</summary>
+
+**Oorzaak:** Het signal is niet (correct) gekoppeld, of het muntje heeft geen werkende `CollisionShape2D`.
+
+**Oplossing — loop deze checklist langs:**
+1. Selecteer het muntje en open het **Node**-tabblad. Staat er bij `body_entered` een groen pijltje (= verbonden)?
+2. Heeft het muntje een `CollisionShape2D` als child?
+3. Heeft die `CollisionShape2D` ook echt een **Shape** ingesteld (bijv. `CircleShape2D`)?
+
+</details>
+
+<details>
+<summary>Ik krijg een fout: <code>signal already connected</code></summary>
+
+**Oorzaak:** Je hebt het `body_entered` signal twee keer gekoppeld aan dezelfde functie.
+
+**Oplossing:**
+1. Selecteer de `Muntje`-node
+2. Open het **Node**-tabblad
+3. Klik met rechts op de dubbele verbinding onder `body_entered` → **Disconnect**
+
+</details>
+
+<details>
+<summary><code>_on_body_entered</code> wordt nooit aangeroepen</summary>
+
+**Oorzaak:** Het muntje is geen `Area2D`, of de `CollisionShape2D` heeft geen Shape.
+
+**Oplossing:**
+- Controleer in de Scene Tree dat de root van je muntje een **`Area2D`** is (niet bijvoorbeeld `Node2D`)
+- Selecteer de `CollisionShape2D` en stel in de Inspector een **Shape** in als die nog leeg is
+
+</details>
